@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sketch Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4 font-sans">
+    
+    <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-gray-700">
+        <h1 class="text-4xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            AI Studio
+        </h1>
+        <p class="text-gray-400 mb-8">Upload a photo and apply advanced AI filters.</p>
+        
+        <!-- File Input -->
+        <input type="file" id="fileInput" accept="image/*" 
+            class="block w-full text-sm text-gray-400 
+            file:mr-4 file:py-3 file:px-4 file:rounded-full file:border-0 
+            file:text-sm file:font-bold file:bg-blue-600 file:text-white 
+            hover:file:bg-blue-500 cursor-pointer mb-4 transition-all" />
+
+        <!-- Effect Dropdown -->
+        <select id="effectSelect" class="block w-full text-sm text-gray-300 bg-gray-700 border border-gray-600 rounded-lg p-3 mb-6 focus:ring-blue-500 focus:border-blue-500 outline-none">
+            <option value="sketch">✏️ Pencil Sketch</option>
+            <option value="sepia">🎞️ Vintage Sepia</option>
+            <option value="thermal">🔥 Thermal Vision</option>
+        </select>
+        
+        <!-- Convert Button -->
+        <button id="convertBtn" 
+            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transform transition hover:scale-105">
+            Apply Filter
+        </button>
+
+        <!-- Loading State -->
+        <div id="loading" class="hidden mt-6 flex justify-center items-center space-x-2">
+            <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+            <div class="w-4 h-4 bg-purple-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+            <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+        </div>
+
+        <!-- Result Display -->
+        <div id="resultContainer" class="mt-8 hidden">
+            <h3 class="text-lg font-medium mb-3 text-gray-300">Your Masterpiece:</h3>
+            <img id="resultImage" class="rounded-xl shadow-2xl border-2 border-gray-600 mx-auto w-full object-cover" alt="Generated Art">
+            <a id="downloadLink" download="ai-art.jpg" 
+                class="inline-block mt-5 px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-semibold transition-colors cursor-pointer">
+                Download Image
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const effectSelect = document.getElementById('effectSelect');
+        const convertBtn = document.getElementById('convertBtn');
+        const loading = document.getElementById('loading');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultImage = document.getElementById('resultImage');
+        const downloadLink = document.getElementById('downloadLink');
+
+        convertBtn.addEventListener('click', async () => {
+            if (!fileInput.files[0]) {
+                alert("Please select an image first!");
+                return;
+            }
+
+            convertBtn.classList.add('hidden');
+            loading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('effect', effectSelect.value); // Sending the chosen effect
+
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const imageUrl = URL.createObjectURL(blob);
+                    
+                    resultImage.src = imageUrl;
+                    downloadLink.href = imageUrl;
+                    
+                    loading.classList.add('hidden');
+                    resultContainer.classList.remove('hidden');
+                    convertBtn.classList.remove('hidden');
+                    convertBtn.innerText = "Try Another Image";
+                } else {
+                    alert("Failed to process image.");
+                    loading.classList.add('hidden');
+                    convertBtn.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred while connecting to the API.");
+                loading.classList.add('hidden');
+                convertBtn.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
