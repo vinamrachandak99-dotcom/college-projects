@@ -28,8 +28,13 @@ ENV/
 *.db
 *.sqlite3
 *.pkl
+*.pt
 local_model.pkl
+local_mlp.pt
 local_vitals.db
+sync_state.json
+sync_*.json
+.pytest_cache/
 
 # Node.js & Next.js
 frontend/node_modules/
