@@ -186,3 +186,90 @@ Candidate ID: 1
 
 Expected Result: Displays Alice Developer's age, salary expectations, education, and skills.
 
+
+
+Test Case F: Builder Pattern (Candidate Registration)
+
+Goal: Verify Candidate creation with required and optional parameters via CandidateBuilder.
+
+Register Candidate (Option 1):
+Name: Elena Gilbert
+Age: 23
+Education: B.Tech IT
+Skills: Java, Spring Boot
+Experience: 1 year
+Preferred Location: New York
+Expected Salary: 85000
+
+Expected Result: Candidate registered with ID generated, defaults properly applied.
+
+
+
+Test Case G: Prototype Pattern (Job Duplication)
+
+Goal: Verify cloning existing job postings and customizing fields.
+
+Duplicate existing Job Posting (Option 7):
+Select Job ID: 1 (Senior Java Engineer, $110,000)
+New title: Lead Java Engineer
+New offered salary: 145000
+New location: [Press Enter to keep current: New York]
+
+Expected Result: New job created with identical category (IT) and required skills, but updated title and salary.
+
+
+
+Test Case H: Strategy Pattern (Dynamic Job Matching)
+
+Goal: Compare candidate match scores using Skill-Heavy vs Experience-Heavy strategies.
+
+Search Matching Jobs (Option 5):
+Candidate ID: 1
+Strategy: 1 (Skill-Heavy)
+Result: Higher percentage due to strong skills overlap.
+
+Search Matching Jobs (Option 5):
+Candidate ID: 1
+Strategy: 2 (Experience-Heavy)
+Result: Adjusted percentage accounting for candidate years of experience.
+
+
+
+Test Case I: Memento Pattern (Candidate Profile Undo)
+
+Goal: Save drafts and undo modifications before database commitment.
+
+Edit Candidate Profile (Option 8):
+Candidate ID: 1
+Select: 1 (Skills) -> Update to "Java, Python, Docker"
+Select: 5 (Expected Salary) -> Update to "130000"
+Select: 6 (Undo last change) -> Salary reverts back to original
+Select: 7 (Save to database & exit)
+
+Expected Result: Skills updated, but salary retained previous value.
+
+
+
+Test Case J: Template Method (Interview Workflow)
+
+Goal: Execute structured interview pipeline with category-specific implementations.
+
+Run Category Interview Workflow (Option 9):
+Candidate ID: 1
+Job ID: 1 (IT Job)
+
+Expected Result: Runs verifyDocuments() -> ITInterviewWorkflow.conductInterview() (Coding & System Design) -> ITInterviewWorkflow.makeOffer() -> Candidate Hired.
+
+
+
+Test Case K: Mediator Pattern (Department Coordination)
+
+Goal: Verify decoupled inter-department routing via RecruitmentCoordinator.
+
+Process Application via Departments (Option 10):
+Candidate ID: 1
+Job ID: 1
+
+Expected Result: Coordinator routes from HRDepartment -> TechDepartment -> ManagementDepartment without departments invoking each other directly. All approve -> Candidate Hired.
+
+

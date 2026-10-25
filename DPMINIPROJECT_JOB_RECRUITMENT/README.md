@@ -16,6 +16,15 @@ automatically on first run.
 | Proxy | `proxy/` | Role-gated access to candidate data (RECRUITER/CANDIDATE allowed, GUEST denied) |
 | Bridge | `bridge/` | Separates notification type (Status Update / Job Alert) from delivery method (Email / SMS) |
 | Observer | `observer/` | Notifies subscribed candidates when application status changes |
+| Builder | `model/Candidate.java` (`CandidateBuilder`) | Readable Candidate construction with optional fields |
+| Prototype | `model/Job.java` (`clone()`) | Duplicate an existing job posting and tweak it |
+| Strategy | `strategy/` + `service/JobMatcher.java` | Swap matching algorithm (Skill-Heavy / Experience-Heavy) at runtime |
+| Memento | `memento/` + `Candidate` | Save profile drafts and undo changes |
+| Template Method | `template/` | Fixed interview steps, category-specific interview/offer |
+| Mediator | `mediator/` | HR / Tech / Management communicate only via `RecruitmentCoordinator` |
+| MVC | `view/`, `controller/`, `model/` | Console UI separated from routing + DB logic |
+
+See `ARCHITECTURE.md` for a package-by-package breakdown.
 
 ## How to Compile & Run
 
@@ -50,6 +59,13 @@ java -cp "out:lib/sqlite-jdbc.jar" com.jobrec.Main
 3. **Search Matching Jobs** — shows matching percentage
 4. **Apply for a Job** — runs Abstract Factory eligibility check, then the full Chain of Responsibility approval pipeline, then Observer + Bridge send a notification (choose EMAIL or SMS)
 5. **View Candidates** — try role `GUEST` (denied by Proxy) then `RECRUITER` (allowed)
+6. **Search Matching Jobs** again, choosing strategy `2` — Experience-Heavy gives a different score (Strategy)
+7. **Duplicate existing Job Posting** — clone job 1, change title/salary (Prototype)
+8. **Edit Candidate Profile** — change skills, change salary, Undo, then Save (Memento)
+9. **Run Category Interview Workflow** — same steps, IT vs Finance details differ (Template Method)
+10. **Process Application via Departments** — watch the coordinator route HR → Tech → Management (Mediator)
+
+Run the automated tests with `java -cp "out;lib\sqlite-jdbc.jar" com.jobrec.MainTest`.
 
 A `jobrecruitment.db` SQLite file will appear in the project folder after your first run — you can open it with any SQLite viewer (e.g. DB Browser for SQLite) to show real persisted data if asked.
 
