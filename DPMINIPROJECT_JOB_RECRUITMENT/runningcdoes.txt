@@ -1,5 +1,0 @@
-# Compile all Java files with the SQLite driver
-javac -cp "lib/sqlite-jdbc.jar" -d out (Get-ChildItem -Recurse src/*.java | ForEach-Object { $_.FullName })
-
-# Run the application
-java -cp "out;lib/sqlite-jdbc.jar" com.jobrec.Main
