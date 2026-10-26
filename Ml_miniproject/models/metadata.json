@@ -1,0 +1,242 @@
+{
+  "feature_names": [
+    "SeniorCitizen",
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges",
+    "TotalServices",
+    "AvgMonthlyChargeRatio",
+    "HighRiskPayment",
+    "gender_Male",
+    "Partner_Yes",
+    "Dependents_Yes",
+    "PhoneService_Yes",
+    "MultipleLines_No phone service",
+    "MultipleLines_Yes",
+    "InternetService_Fiber optic",
+    "InternetService_No",
+    "OnlineSecurity_No internet service",
+    "OnlineSecurity_Yes",
+    "OnlineBackup_No internet service",
+    "OnlineBackup_Yes",
+    "DeviceProtection_No internet service",
+    "DeviceProtection_Yes",
+    "TechSupport_No internet service",
+    "TechSupport_Yes",
+    "StreamingTV_No internet service",
+    "StreamingTV_Yes",
+    "StreamingMovies_No internet service",
+    "StreamingMovies_Yes",
+    "Contract_One year",
+    "Contract_Two year",
+    "PaperlessBilling_Yes",
+    "PaymentMethod_Credit card (automatic)",
+    "PaymentMethod_Electronic check",
+    "PaymentMethod_Mailed check"
+  ],
+  "scale_cols": [
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges",
+    "TotalServices",
+    "AvgMonthlyChargeRatio"
+  ],
+  "medians": {
+    "SeniorCitizen": 0.0,
+    "tenure": 29.0,
+    "MonthlyCharges": 70.4,
+    "TotalCharges": 1400.55,
+    "TotalServices": 2.0,
+    "AvgMonthlyChargeRatio": 61.150000000000006,
+    "HighRiskPayment": 0.0,
+    "gender_Male": 1.0,
+    "Partner_Yes": 0.0,
+    "Dependents_Yes": 0.0,
+    "PhoneService_Yes": 1.0,
+    "MultipleLines_No phone service": 0.0,
+    "MultipleLines_Yes": 0.0,
+    "InternetService_Fiber optic": 0.0,
+    "InternetService_No": 0.0,
+    "OnlineSecurity_No internet service": 0.0,
+    "OnlineSecurity_Yes": 0.0,
+    "OnlineBackup_No internet service": 0.0,
+    "OnlineBackup_Yes": 0.0,
+    "DeviceProtection_No internet service": 0.0,
+    "DeviceProtection_Yes": 0.0,
+    "TechSupport_No internet service": 0.0,
+    "TechSupport_Yes": 0.0,
+    "StreamingTV_No internet service": 0.0,
+    "StreamingTV_Yes": 0.0,
+    "StreamingMovies_No internet service": 0.0,
+    "StreamingMovies_Yes": 0.0,
+    "Contract_One year": 0.0,
+    "Contract_Two year": 0.0,
+    "PaperlessBilling_Yes": 1.0,
+    "PaymentMethod_Credit card (automatic)": 0.0,
+    "PaymentMethod_Electronic check": 0.0,
+    "PaymentMethod_Mailed check": 0.0
+  },
+  "iqr_bounds": {
+    "tenure": [
+      -60.0,
+      124.0
+    ],
+    "MonthlyCharges": [
+      -45.47500000000001,
+      171.125
+    ],
+    "TotalCharges": [
+      -4694.174999999999,
+      8899.224999999999
+    ]
+  },
+  "categories": {
+    "gender": [
+      "Female",
+      "Male"
+    ],
+    "Partner": [
+      "No",
+      "Yes"
+    ],
+    "Dependents": [
+      "No",
+      "Yes"
+    ],
+    "PhoneService": [
+      "No",
+      "Yes"
+    ],
+    "MultipleLines": [
+      "No",
+      "No phone service",
+      "Yes"
+    ],
+    "InternetService": [
+      "DSL",
+      "Fiber optic",
+      "No"
+    ],
+    "OnlineSecurity": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "OnlineBackup": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "DeviceProtection": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "TechSupport": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "StreamingTV": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "StreamingMovies": [
+      "No",
+      "No internet service",
+      "Yes"
+    ],
+    "Contract": [
+      "Month-to-month",
+      "One year",
+      "Two year"
+    ],
+    "PaperlessBilling": [
+      "No",
+      "Yes"
+    ],
+    "PaymentMethod": [
+      "Bank transfer (automatic)",
+      "Credit card (automatic)",
+      "Electronic check",
+      "Mailed check"
+    ]
+  },
+  "audit": {
+    "source": "IBM Telco (downloaded)",
+    "raw_shape": [
+      7043,
+      21
+    ],
+    "whitespace_totalcharges_rows": 11,
+    "whitespace_rows_with_tenure_0": 11,
+    "totalcharges_nulls_before": 11,
+    "totalcharges_nulls_after": 0,
+    "duplicates_dropped": 22,
+    "iqr_bounds": {
+      "tenure": {
+        "Q1": 9.0,
+        "Q3": 55.0,
+        "lower": -60.0,
+        "upper": 124.0,
+        "outliers_capped": 0
+      },
+      "MonthlyCharges": {
+        "Q1": 35.75,
+        "Q3": 89.9,
+        "lower": -45.47500000000001,
+        "upper": 171.125,
+        "outliers_capped": 0
+      },
+      "TotalCharges": {
+        "Q1": 403.35,
+        "Q3": 3801.7,
+        "lower": -4694.174999999999,
+        "upper": 8899.224999999999,
+        "outliers_capped": 0
+      }
+    },
+    "cleaned_shape": [
+      7021,
+      34
+    ],
+    "churn_rate": 0.2644922375729953,
+    "train_scaled_mean": {
+      "tenure": 6.958662832408388e-17,
+      "MonthlyCharges": -3.694417358296817e-16,
+      "TotalCharges": -1.3948955950418633e-16,
+      "TotalServices": -7.71778968685294e-17,
+      "AvgMonthlyChargeRatio": -1.012169139259402e-17
+    },
+    "train_scaled_std": {
+      "tenure": 0.9999999999999998,
+      "MonthlyCharges": 1.0,
+      "TotalCharges": 1.0,
+      "TotalServices": 0.9999999999999999,
+      "AvgMonthlyChargeRatio": 0.9999999999999999
+    },
+    "test_scaled_mean": {
+      "tenure": 0.007383091035691766,
+      "MonthlyCharges": -0.0071238945127720995,
+      "TotalCharges": -0.007814459404694874,
+      "TotalServices": 0.0051905948604699425,
+      "AvgMonthlyChargeRatio": -0.006357965276220932
+    },
+    "split": {
+      "train": 5616,
+      "test": 1405,
+      "train_churn_rate": 0.2644230769230769,
+      "test_churn_rate": 0.26476868327402137
+    },
+    "class_counts_before_smote": {
+      "0": 4131,
+      "1": 1485
+    },
+    "class_counts_after_smote": {
+      "0": 4131,
+      "1": 4131
+    }
+  },
+  "best_model": "CatBoost"
+}
